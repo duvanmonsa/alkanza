@@ -1,0 +1,93 @@
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    var keyword = "mountains";
+
+    $(document).ready(function(){
+
+        $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+        {
+            tags: keyword,
+            tagmode: "any",
+            format: "json"
+        },
+        function(data) {
+            var rnd1 = Math.floor(Math.random() * data.items.length);
+            var image_src = data.items[rnd1]['media']['m'].replace("_m", "_b");
+
+            $('.select1 img').attr('src',  image_src);
+            $('.select1 input').val(image_src);
+
+             var rnd2 = Math.floor(Math.random() * data.items.length);
+             if(rnd1 === rnd2)  rnd2 ++
+             var image_src = data.items[rnd2]['media']['m'].replace("_m", "_b");
+
+            $('.select2 img').attr('src',  image_src);
+            $('.select2 input').val(image_src);
+
+            $('form').submit(function(){
+                if(!$('.input-image input').is(':checked'))
+                {
+                   $('.error').html('You need to select one image!')
+                   return false
+                }
+            })
+        });
+
+    });
+    </script>
+
+    <div class="container">
+    <div class="section">
+
+      <img src="{{user.picture}}"/>
+      <h5> Welcome {{user.nickname}}! select one picture please</h5>
+      <span class="error" style="color: red"></span>
+        
+      <form method="/selected" method="get"> 
+      <div class="row input-image">
+       
+            <div class="col s6">
+              <div class="card">
+                  <div class="card-image">
+                     <label class="select1" >
+                        <input type="radio" name="image" value="" />
+                        <img  src="">
+                    </label>
+                    <span class="card-title">Image One</span>
+                  </div>
+                </div>
+            </div>
+         
+          <div class="col s6">
+         
+              <div class="card">
+                  <div class="card-image">
+                    <label class="select2" >
+                        <input type="radio" name="image" value="" />
+                        <img  src="">
+                    </label>
+                    <span class="card-title">Image Two</span>
+                  </div>
+                </div>
+            </div>
+    </div>
+    <br>
+    <button class="btn waves-effect waves-light" type="submit" name="continue">Submit and Continue
+    <i class="material-icons right">send</i>
+    </button>
+
+     <button class="btn waves-effect red" type="submit" name="finish">Submit and Finish
+    <i class="material-icons right">send</i>
+    </button>
+
+    </form>
+     
+
+    <div class="section">
+
+    </div>
+  </div>
+    </div>

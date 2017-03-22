@@ -1,0 +1,39 @@
+{
+  "name": "alkanza",
+  "version": "1.0.0",
+  "description": "alkanza site",
+  "main": "src/server.js",
+  "scripts": {
+    "lint": "standard",
+    "test": "ava",
+    "cover": "nyc --reporter=html ava",
+    "dev": "NODE_ENV=development nodemon src/server.js"
+  },
+  "keywords": [
+    "alkanza"
+  ],
+  "author": "Duvanmonsa",
+  "license": "ISC",
+  "homepage": "https://alkanza.us",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "connect-ensure-login": "^0.1.1",
+    "express": "^4.14.1",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.14.2",
+    "firebase": "^3.7.3",
+    "handlebars": "^4.0.6",
+    "immutable": "^3.8.1",
+    "install": "^0.8.7",
+    "jsonwebtoken": "^7.3.0",
+    "morgan": "^1.8.1",
+    "passport": "^0.3.2",
+    "passport-auth0": "^0.6.0"
+  },
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "node-env-file": "^0.1.8",
+    "nyc": "^10.0.0",
+    "standard": "^8.6.0"
+  }
+}
